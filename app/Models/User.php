@@ -24,7 +24,7 @@ class User extends Authenticatable
         'etat',
         'email',
         'password',
-        'roles_id',
+        'role',
     ];
     
 
@@ -59,9 +59,9 @@ class User extends Authenticatable
         return $this->hasMany(Rendezvous::class);
     }
     
-    public function prescription()
+    public function ordonance()
     {
-        return $this->hasMany(Prescription::class);
+        return $this->hasMany(Ordonance::class);
     }
     
     public function facture()

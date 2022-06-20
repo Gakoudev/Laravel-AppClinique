@@ -11,7 +11,7 @@ class Antecedent extends Model
     protected $fillable = [
         'libelle',
         'detail',
-        'patients_id',
+        'patient',
     ];
 
     public function patient()

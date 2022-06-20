@@ -33,6 +33,18 @@
                 <x-input id="telephone" class="block mt-1 w-full" type="text" name="telephone" :value="old('telephone')" required autofocus />
             </div>
             
+            <!-- Role -->
+            <div>
+                <x-label for="role" :value="__('choisissez un rôle')" />
+
+                <select id="role" class="block mt-1 w-full"  name="role" >
+                    <option>Faite un choix</option>
+                    @foreach($roles as $role)
+                        <option class="block mt-1 w-full" value="{{$role->id}}">{{$role->nom}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />

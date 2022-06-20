@@ -11,8 +11,9 @@ class Facture extends Model
     protected $fillable = [
         'numero',
         'date',
-        'patients_id',
-        'users_id',
+        'etat',
+        'patient',
+        'user',
     ];
 
     public function patient()
@@ -28,5 +29,10 @@ class Facture extends Model
     public function traitement()
     {
         return $this->hasMany(Traitement::class);
+    }
+    
+    public function ordonance()
+    {
+        return $this->hasMany(Ordonance::class);
     }
 }

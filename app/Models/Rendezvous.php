@@ -11,8 +11,9 @@ class Rendezvous extends Model
     protected $fillable = [
         'dateRV',
         'detail',
-        'patients_id',
-        'users_id',
+        'etat',
+        'patient',
+        'user',
     ];
     
     public function user()

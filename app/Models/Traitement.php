@@ -13,9 +13,9 @@ class Traitement extends Model
         'detail',
         'prix',
         'date',
-        'patients_id',
-        'users_id',
-        'factures_id',
+        'patient',
+        'user',
+        'facture',
     ];
 
     public function patient()

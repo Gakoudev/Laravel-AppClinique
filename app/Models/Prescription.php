@@ -12,18 +12,12 @@ class Prescription extends Model
         'libelle',
         'detail',
         'quantite',
-        'date',
-        'patients_id',
-        'users_id',
+        'ordonance',
     ];
 
-    public function patient()
+    public function ordonance()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Ordonance::class);
     }
     
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

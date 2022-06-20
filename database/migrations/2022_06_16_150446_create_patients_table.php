@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('nom');
             $table->string('telephone');
             $table->dateTime('dateN');
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user');
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

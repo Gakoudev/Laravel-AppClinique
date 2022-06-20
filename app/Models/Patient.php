@@ -14,7 +14,7 @@ class Patient extends Model
         'nom',
         'telephone',
         'dateN',
-        'users_id',
+        'user',
     ];
     public function user()
     {
@@ -31,9 +31,9 @@ class Patient extends Model
         return $this->hasMany(Antecedent::class);
     }
     
-    public function prescription()
+    public function ordonance()
     {
-        return $this->hasMany(Prescription::class);
+        return $this->hasMany(Ordonance::class);
     }
     
     public function facture()

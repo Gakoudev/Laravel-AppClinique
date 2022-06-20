@@ -18,11 +18,8 @@ return new class extends Migration
             $table->string('libelle');
             $table->string('detail');
             $table->string('quantite');
-            $table->dateTime('date');
-            $table->unsignedBigInteger('patients_id');
-            $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade');
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('ordonance');
+            $table->foreign('ordonance')->references('id')->on('ordonances')->onDelete('cascade');
             $table->timestamps();
         });
     }
