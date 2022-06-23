@@ -37,7 +37,13 @@
                                         <td>{{$user->nom}}</td>
                                         <td>{{$user->telephone}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>{{$user->role}}</td>
+                                        @if($user->role==1)
+                                        <td >ADMIN</td>
+                                        @elseif($user->role==2)
+                                            <td>SECRETAIRE</td>
+                                        @else
+                                            <td>MEDECIN</td>
+                                        @endif
                                         @if($user->etat==1)
                                         <td ><a class='btn btn-primary'  href= "{{route('updateUser',['id'=>$user->id])}}"><i class='far fa-fw fa-check-circle'></a></td>
                                         @else
