@@ -41,7 +41,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Accueil
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link" href="{{ url('/user/list') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
+                                Gestion Utilisateur
+                            </a>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Layouts
@@ -97,7 +100,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        {{ Auth::user()->prenom }} {{ Auth::user()->nom }}
+                        {{Auth::user()->prenom}} {{Auth::user()->nom}}
                     </div>
                 </nav>
             </div>

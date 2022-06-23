@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::controller(UserController::class)->group(function(){
+
+    Route::get('/user/list', [ 'as' => 'listUser', 'uses' => 'getAll']);
+    Route::post('/adduser', [ 'as' => 'adduser', 'uses' => 'add']);
+    Route::get('/user/update/{id}', [ 'as' => 'updateUser', 'uses' => 'update']);
+});
 
 require __DIR__.'/auth.php';

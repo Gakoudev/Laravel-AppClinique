@@ -22,23 +22,4 @@
                             <li class="breadcrumb-item active">Bienvenue dans votre application de gestion de votre clinique</li>
                         </ol>
                     </div>
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Gakoudev 2022</span>
-                        </div>
-                    </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="{{asset('js/scripts.js')}}"></script>
-        <script src="{{asset('assets/demo/chart-area-demo.js')}}"></script>
-        <script src="{{asset('assets/demo/chart-bar-demo.js')}}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="{{asset('js/datatables-simple-demo.js')}}"></script>
-    </body>
-</html>
+                
