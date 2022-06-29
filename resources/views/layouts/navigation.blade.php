@@ -45,6 +45,14 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
                                 Gestion Utilisateur
                             </a>
+                            <a class="nav-link" href="{{ url('/medecin/patient') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-heartbeat fa-fw"></i></div>
+                                Gestion Patients
+                            </a>
+                            <a class="nav-link" href="{{ url('/patient/list') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-heartbeat fa-fw"></i></div>
+                                Gestion Patients
+                            </a>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 Layouts

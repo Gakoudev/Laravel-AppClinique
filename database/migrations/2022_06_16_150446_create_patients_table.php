@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('nom');
             $table->string('telephone');
-            $table->dateTime('dateN');
+            $table->date('dateN');
             $table->unsignedBigInteger('user');
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
