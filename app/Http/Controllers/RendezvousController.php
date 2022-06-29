@@ -51,9 +51,16 @@ class RendezvousController extends Controller
     }
 
     
-    public function updateRV($id)
+    public function updateRV($id,Request $request)
     {
+        $request->validate([
+            'dateRV' => ['required', 'date'],
+            'detail' => ['required', 'string', 'max:255'],
+        ]);
+
         $rendezvous=Rendezvous::find($id);
+        $rendezvous->detail =  $request->detail;
+        $rendezvous->dateRv =  $request->dateRV;
         $pId = $rendezvous->patient;
         $rendezvous->save();
         return redirect()->route('activeRV',['id'=>$pId]);
