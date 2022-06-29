@@ -3,6 +3,7 @@
 use App\Http\Controllers\AtecedentController;
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\RendezvousController;
 use App\Http\Controllers\TraitementController;
 use App\Http\Controllers\UserController;
@@ -70,6 +71,13 @@ Route::controller(FactureController::class)->group(function(){
     Route::post('/Facture/new/{id}', [ 'as' => 'newFacture', 'uses' => 'new']);
     // Route::post('/Facture/gener/{id}', [ 'as' => 'addTraitement', 'uses' => 'update']);
     // Route::get('/traitement/All/{id}', [ 'as' => 'allTraitement', 'uses' => 'getAll']);
+});
+
+Route::controller(PrescriptionController::class)->group(function(){
+
+    Route::get('/prescription/list/{id}', [ 'as' => 'listPrescription', 'uses' => 'getActive']);
+    Route::post('/Prescription/add/{id}', [ 'as' => 'addPrescription', 'uses' => 'add']);
+    Route::get('/prescription/delete/{id}', [ 'as' => 'deletePrescription', 'uses' => 'delete']);
 });
 
 require __DIR__.'/auth.php';

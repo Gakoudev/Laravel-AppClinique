@@ -22,7 +22,7 @@ class TraitementController extends Controller
         $patient = Patient::find($id);
         $facture = DB::table('factures')->where('patient','=',$id)
                                         ->where('etat','=',1)->get();
-        if (isset($facture)) {
+        if (!$facture->isEmpty()) {
             $traitements = DB::table('traitements')->where('facture','=',$facture[0]->id)->get();
             return view('traitement.traitement',['traitements'=>$traitements,'patient'=>$patient]);
         }
@@ -36,7 +36,7 @@ class TraitementController extends Controller
     {
         $facture = DB::table('factures')->where('patient','=',$id)
                                                ->where('etat','=',1)->get();
-        if(!isset($facture))
+        if($facture->isEmpty())
         {
             $facture = FactureController::new($id);
         } 

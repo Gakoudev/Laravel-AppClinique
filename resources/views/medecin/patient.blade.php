@@ -50,7 +50,7 @@
                                         <i class="fas fa-circle-plus fa-fw"></i>
                                             </a>
                                         </td>
-                                        <td><a class='btn btn-primary'  href= "{{route('listAntecedent',['id'=>$patient->id])}}">
+                                        <td><a class='btn btn-primary'  href= "{{route('listPrescription',['id'=>$patient->id])}}">
                                         <i class="fas fa-circle-plus fa-fw"></i>
                                             </a>
                                         </td>
