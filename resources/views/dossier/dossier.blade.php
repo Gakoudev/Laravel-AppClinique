@@ -10,7 +10,7 @@
                             <div class="col-md-7 mt-4">
                         <h6 class="m-0 font-weight-bold text-primary">Information du Patient</h6>
                             </div>
-                            @if($etat==1)
+                            @if($etat==1 || $etat==2)
                             <div class="flex items-center justify-end mt-3 col-md-5">
                                  <a href= "{{route('getAllDossier',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Tout les Dossiers"/></a>
                             </div>
@@ -74,7 +74,7 @@
                             <div class="col-md-7 mt-4">
                                  <h6 class="m-0 font-weight-bold text-primary">Liste des Antécédents</h6>
                             </div>
-                            @if($etat==1)
+                            @if($etat==1 || $etat==2)
                             <div class="flex items-center justify-end mt-3 col-md-5">
                                  <a href= "{{route('listAntecedent',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Nouveau Antécédent"/></a>
                             </div>
@@ -118,7 +118,8 @@
     <div class="row">
             <div class="container col-md-6">
                 <div class="card  mb-4">
-                <div class="row">
+                    <div class="card-header">
+                        <div class="row">
                             <div class="col-md-7 mt-4">
                                  <h6 class="m-0 font-weight-bold text-primary">Liste des Traitements</h6>
                             </div>
@@ -128,6 +129,7 @@
                             </div>
                             @endif
                         </div>
+                    </div>
                     <div class="card-body">
                         <table id="datatablesSimple2">
                             <thead>
@@ -212,6 +214,14 @@
                         </table>
                     </div>
                 </div>
+            </div>
+        
+            <div class="container col-md-2">    
+            @if( $etat==2)
+                <div class="flex items-center justify-end mt-3 col-md-5">
+                        <a href= "{{route('getAllDossier',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Générer Facture"/></a>
+                </div>
+            @endif
             </div>
     </div>
     @include('layouts.footer')

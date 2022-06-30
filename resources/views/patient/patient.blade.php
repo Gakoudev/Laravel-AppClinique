@@ -3,7 +3,7 @@
     <!-- Validation Errors -->
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
     <div class="row">
-            <div class="container col-md-7">
+            <div class="container col-md-8">
                 <div class="card  mb-4">
                     <div class="card-header">
                         <h6 class="m-0 font-weight-bold text-primary">Liste des utilisateurs</h6>
@@ -18,6 +18,7 @@
                                     <th>Téléphone</th>
                                     <th>Date Naissance</th>
                                     <th>User</th>
+                                    <th>Dossier</th>
                                     <th>Antécédent</th>
                                 </tr>
                             </thead>
@@ -29,6 +30,7 @@
                                     <th>Téléphone</th>
                                     <th>Date Naissance</th>
                                     <th>User</th>
+                                    <th>Dossier</th>
                                     <th>Antécédent</th>
                                 </tr>
                             </tfoot>
@@ -41,6 +43,10 @@
                                         <td>{{$patient->telephone}}</td>
                                         <td>{{$patient->dateN}}</td>
                                         <td>{{$patient->user}}</td>
+                                        <td><a class='btn btn-primary'  href= "{{route('getDossier',['id'=>$patient->id])}}">
+                                        <i class="fas fa-folder-open fa-fw"></i>
+                                            </a>
+                                        </td>
                                         <td><a class='btn btn-primary'  href= "{{route('listAntecedent',['id'=>$patient->id])}}">
                                         <i class="fas fa-eye fa-fw"></i>
                                             </a>
@@ -52,7 +58,7 @@
                 </div>
             </div>
             
-     <div class="container col-md-5"> 
+     <div class="container col-md-4"> 
         <div class="card"> 
             <div class="card-header">
                 <h6 class="m-0 font-weight-bold text-primary">Formulaire d'ajout des utilisateurs</h6>

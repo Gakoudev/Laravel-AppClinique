@@ -22,6 +22,9 @@ class DossierController extends Controller
                 $traitements = DB::table('traitements')->where('facture','=',$facture[0]->id)->get();
                 $ordonances = DB::table('ordonances')->where('facture','=',$facture[0]->id)->get();
                 $etat = $facture[0]->etat;
+                if(Auth::user()->role==2){
+                    $etat = 2;
+                }
                 return view('dossier.dossier',['traitements'=>$traitements,'ordonances'=>$ordonances,'patient'=>$patient,'antecedents'=>$antecedents,'etat'=>$etat]);
             }
             else {
@@ -59,6 +62,9 @@ class DossierController extends Controller
             $traitements = DB::table('traitements')->where('facture','=',$dossier->id)->get();
             $ordonances = DB::table('ordonances')->where('facture','=',$dossier->id)->get();
             $etat = $dossier->etat;
+            if(Auth::user()->role==2){
+                $etat = 2;
+            }
             return view('dossier.dossier',['traitements'=>$traitements,'ordonances'=>$ordonances,'patient'=>$patient,'antecedents'=>$antecedents,'etat'=>$etat]);
         }
         else {
