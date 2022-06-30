@@ -16,7 +16,7 @@
                                     <th>Nom</th>
                                     <th>Téléphone</th>
                                     <th>Email</th>
-                                    <th>Rang</th>
+                                    <th>Statut</th>
                                     <th>Etat</th>
                                 </tr>
                             </thead>
@@ -26,7 +26,7 @@
                                     <th>Nom</th>
                                     <th>Téléphone</th>
                                     <th>Email</th>
-                                    <th>Rang</th>
+                                    <th>Statut</th>
                                     <th>Etat</th>
                                 </tr>
                             </tfoot>

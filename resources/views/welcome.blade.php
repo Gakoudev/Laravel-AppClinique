@@ -59,7 +59,7 @@
                     <ul class="dropdown" >
                         @if (Route::has('login'))
                                     @auth
-                                        <li><a href="{{ url('/dashboard') }}" >Accueil</a></li>
+                                        <li><a href="{{ url('/dashboard') }}" >Dashboard</a></li>
                                         
                                         <li>
                                           <a href="{{ url('logout') }}" 
