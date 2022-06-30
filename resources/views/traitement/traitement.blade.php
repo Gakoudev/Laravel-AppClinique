@@ -58,6 +58,7 @@
                         <input class="form-control" id="libelle" type="text" name="libelle" placeholder="libelle" required autofocus/>
                         
                         <label for="libelle">libelle</label>   
+                        </div>
 
                         <!-- Détail -->
                         
@@ -65,6 +66,7 @@
                         <input class="form-control" id="detail" type="text" name="detail" placeholder="detail" required autofocus/>
                         
                         <label for="detail">Détail</label>
+                        </div>
 
                         
                         <!-- Prix -->
@@ -73,7 +75,7 @@
                         <input class="form-control" id="prix" type="number" name="prix" placeholder="prix" required autofocus/>
                         
                         <label for="prix">Prix</label>   
-
+                        </div>
                         <!-- Date RV -->
                         <div class="form-floating mb-3">   
                         <input class="form-control" id="date" type="date" name="date" placeholder="date" required />
@@ -87,5 +89,13 @@
                     </form>
             </div>
         </div>
+</div>
+<div class="row">
+
+<div class="container col-md-5"> 
+<div class="flex items-center justify-end mt-4">
+<a href= "{{route('listRV',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Nouveau RV"/></a>
+</div>
+</div>
 </div>
     @include('layouts.footer')

@@ -85,4 +85,12 @@
             </div>
         </div>
 </div>
+<div class="row">
+
+<div class="container col-md-5"> 
+<div class="flex items-center justify-end mt-4">
+<a href= "{{route('listRV',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Nouveau RV"/></a>
+</div>
+</div>
+</div>
     @include('layouts.footer')
