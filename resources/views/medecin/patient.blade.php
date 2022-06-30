@@ -38,7 +38,7 @@
                                         <td>{{$patient->numero}}</td>
                                         <td>{{$patient->prenom}}</td>
                                         <td>{{$patient->nom}}</td>
-                                        <td><a class='btn btn-primary'  href= "{{route('listAntecedent',['id'=>$patient->id])}}">
+                                        <td><a class='btn btn-primary'  href= "{{route('getDossier',['id'=>$patient->id])}}">
                                         <i class="fas fa-folder-open fa-fw"></i>
                                             </a>
                                         </td>

@@ -10,11 +10,13 @@ use Illuminate\Support\Facades\DB;
 
 class PrescriptionController extends Controller
 {
-    public function getAll($id)
+    public function getByOrdonance($id)
     {
-        $prescriptions = DB::table('prescriptions')->where('patient','=',$id)->get();
-        $patient = Patient::find($id);
-        return view('ordonance.ordonance',['prescriptions'=>$prescriptions,'patient'=>$patient]);
+        $prescriptions = DB::table('prescriptions')->where('ordonance','=',$id)->get();
+        $ordonance = Ordonance::find($id);
+        $patient = Patient::find($ordonance->patient);
+        $etat=0;
+        return view('ordonance.ordonance',['prescriptions'=>$prescriptions,'patient'=>$patient,'etat'=>$etat]);
     }
     
     public function getActive($id)
@@ -24,10 +26,12 @@ class PrescriptionController extends Controller
                                         ->where('etat','=',1)->get();
         if (!$ordonance->isEmpty()) {
             $prescriptions = DB::table('prescriptions')->where('ordonance','=',$ordonance[0]->id)->get();
-            return view('ordonance.ordonance',['prescriptions'=>$prescriptions,'patient'=>$patient]);
+            $etat=1;
+            return view('ordonance.ordonance',['prescriptions'=>$prescriptions,'patient'=>$patient,'etat'=>$etat]);
         }
         else {
-            return view('ordonance.ordonance',['patient'=>$patient]);
+            $etat=1;
+            return view('ordonance.ordonance',['patient'=>$patient,'etat'=>$etat]);
             
         }
     }

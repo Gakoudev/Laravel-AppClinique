@@ -15,7 +15,9 @@
                                     <th>Libellé</th>
                                     <th>Detail</th>
                                     <th>Quantité</th>
+                                    @if($etat==1)   
                                     <th>Supprimer</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tfoot>
@@ -23,7 +25,9 @@
                                     <th>Libellé</th>
                                     <th>Detail</th>
                                     <th>Quantité</th>
+                                    @if($etat==1)   
                                     <th>Supprimer</th>
+                                    @endif
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -33,10 +37,12 @@
                                         <td>{{$prescription->libelle}}</td>
                                         <td >{{$prescription->detail}}</td>
                                         <td>{{$prescription->quantite}}</td>
+                                        @if($etat==1)  
                                         <td><a class='btn btn-danger'  href= "{{route('deletePrescription',['id'=>$prescription->id])}}">
                                             <i class="fas fa-trash-can fa-fw"></i>
                                             </a>
-                                        </td>
+                                        </td> 
+                                        @endif
                                 @endforeach
                                 @endisset
                             </tbody>
@@ -44,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            
+        @if($etat==1)    
         <div class="container col-md-5"> 
             <div class="card"> 
                 <div class="card-header">
@@ -89,8 +95,12 @@
 
 <div class="container col-md-5"> 
 <div class="flex items-center justify-end mt-4">
-<a href= "{{route('listRV',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Nouveau RV"/></a>
+<a href= "{{route('activeRV',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Nouveau RV"/></a>
 </div>
 </div>
 </div>
+@else
+</div>
+@endif
+
     @include('layouts.footer')
