@@ -103,7 +103,7 @@
     <div class="row">
             <div class="container col-md-2">
                 <div class="flex items-center justify-end mt-3 col-md-5">
-                        <a href= "{{route('getAllDossier',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Générer Facture"/></a>
+                        <a href= "{{route('ordonancePDF',['id'=>$prescription->ordonance])}}"><input type="submit" class="btn btn-primary" value="Générer Facture"/></a>
                 </div>
             </div>
     </div>

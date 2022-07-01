@@ -4,6 +4,7 @@ use App\Http\Controllers\AtecedentController;
 use App\Http\Controllers\DossierController;
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\RendezvousController;
 use App\Http\Controllers\TraitementController;
@@ -80,6 +81,12 @@ Route::controller(PrescriptionController::class)->group(function(){
     Route::post('/Prescription/add/{id}', [ 'as' => 'addPrescription', 'uses' => 'add']);
     Route::get('/ordonance/{id}', [ 'as' => 'getByOrdonance', 'uses' => 'getByOrdonance']);
     Route::get('/prescription/delete/{id}', [ 'as' => 'deletePrescription', 'uses' => 'delete']);
+});
+
+Route::controller(PdfController::class)->group(function(){
+
+    Route::get('/ordonance/pdf/{id}', [ 'as' => 'ordonancePDF', 'uses' => 'ordonancePDF']);
+    Route::get('/facture/pdf/{id}', [ 'as' => 'facturePDF', 'uses' => 'facturePDF']);
 });
 
 require __DIR__.'/auth.php';

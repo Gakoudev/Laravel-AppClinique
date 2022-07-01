@@ -219,7 +219,7 @@
             <div class="container col-md-2">    
             @if( $etat==2)
                 <div class="flex items-center justify-end mt-3 col-md-5">
-                        <a href= "{{route('getAllDossier',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Générer Facture"/></a>
+                        <a href= "{{route('facturePDF',['id'=>$ordonances[0]->facture])}}"><input type="submit" class="btn btn-primary" value="Générer Facture"/></a>
                 </div>
             @endif
             </div>
