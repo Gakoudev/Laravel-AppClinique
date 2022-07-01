@@ -48,7 +48,7 @@ class AtecedentController extends Controller
     {
         if (Session::has('user')) {
             $antecedent=Antecedent::find($id);
-            $pId = $antecedent->patient;
+            $pId = $antecedent->patients_id;
             $antecedent->delete($id);
             return redirect()->route('listAntecedent',['id'=>$pId]);
         }

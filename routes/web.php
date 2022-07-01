@@ -29,64 +29,53 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
-Route::controller(UserController::class)->group(function(){
-
-    Route::get('/user/list', [ 'as' => 'listUser', 'uses' => 'getAll']);
-    Route::post('/adduser', [ 'as' => 'adduser', 'uses' => 'add']);
-    Route::get('/user/update/{id}', [ 'as' => 'updateUser', 'uses' => 'update']);
+ 
+Route::middleware(['admin'])->group(function () {
+    Route::get('/user/list', [ UserController::class, 'getAll'])->name('listUser');
+    Route::post('/adduser', [ UserController::class, 'add'])->name('adduser');
+    Route::get('/user/update/{id}', [ UserController::class, 'update'])->name('updateUser');
+});
+ 
+Route::middleware(['medecinsecretaire'])->group(function () {
+    Route::get('/antecedent/list/{id}', [ (AtecedentController::class), 'getAllAntecedent'])->name('listAntecedent');
+    Route::post('/Antecedent/add/{id}', [ (AtecedentController::class), 'addAntecedent'])->name('addAntecedent');
+    Route::get('/antecedent/delete/{id}', [ (AtecedentController::class), 'deleteAntecedent'])->name('deleteAntecedent');
+    
+    Route::get('/rendezvous/list/{id}', [ (RendezvousController::class), 'getAllRendezvous'])->name('listRV');
+    Route::get('/rendezvous/active/{id}', [ (RendezvousController::class), 'getActiveRV'])->name('activeRV');
+    Route::post('/rendezvous/add/{id}', [ (RendezvousController::class), 'addRV'])->name('addRV');
+    Route::post('/rendezvous/decaler/{id}', [ (RendezvousController::class), 'decalerRV'])->name('decalerRV');
+    
+    Route::get('/dossier/actice/{id}', [ (DossierController::class), 'getDossier'])->name('getDossier');
+    Route::get('/dossier/all/{id}', [ (DossierController::class), 'getAllDossier'])->name('getAllDossier');
+    Route::get('/dossier/select/{id}', [ (DossierController::class), 'getDossierbyId'])->name('getDossierbyId');   
+    
+    Route::get('/prescription/list/{id}', [ (PrescriptionController::class), 'getActive'])->name('listPrescription');
+    Route::get('/ordonance/{id}', [ (PrescriptionController::class), 'getByOrdonance'])->name('getByOrdonance');
+    
+    Route::get('/ordonance/pdf/{id}', [ (PdfController::class), 'ordonancePDF'])->name('ordonancePDF');
 });
 
-Route::controller(PatientController::class)->group(function(){
+Route::middleware(['secretaire'])->group(function () {
+    
+    Route::get('/patient/list', [ (PatientController::class), 'getAll'])->name('listPatient');
+    Route::post('/patient/add', [ (PatientController::class), 'addPatient'])->name('addpatient');
 
-    Route::get('/medecin/patient', [ 'as' => 'medecinPatient', 'uses' => 'getAllPatient']);
-    Route::get('/patient/list', [ 'as' => 'listPatient', 'uses' => 'getAll']);
-    Route::post('/addpatient', [ 'as' => 'addpatient', 'uses' => 'addPatient']);
+    Route::get('/facture/pdf/{id}', [ (PdfController::class), 'facturePDF'])->name('facturePDF');
 });
 
-Route::controller(AtecedentController::class)->group(function(){
+Route::middleware(['medecin'])->group(function () {
+    
+    Route::get('/medecin/patient', [ (PatientController::class), 'getAllPatient'])->name('medecinPatient');
 
-    Route::get('/antecedent/list/{id}', [ 'as' => 'listAntecedent', 'uses' => 'getAllAntecedent']);
-    Route::post('/addAntecedent/{id}', [ 'as' => 'addAntecedent', 'uses' => 'addAntecedent']);
-    Route::get('/antecedent/delete/{id}', [ 'as' => 'deleteAntecedent', 'uses' => 'deleteAntecedent']);
-});
+    Route::get('/rendezvous/fin/{id}', [ (RendezvousController::class), 'finRV'])->name('finRV');
 
-Route::controller(RendezvousController::class)->group(function(){
+    Route::get('/traitement/list/{id}', [ (TraitementController::class), 'getActive'])->name('listTraitement');
+    Route::post('/traitement/add/{id}', [ (TraitementController::class), 'add'])->name('addTraitement');
+    Route::get('/traitement/all/{id}', [ (TraitementController::class), 'getAll'])->name('allTraitement');
 
-    Route::get('/rendezvous/list/{id}', [ 'as' => 'listRV', 'uses' => 'getAllRendezvous']);
-    Route::get('/rendezvous/active/{id}', [ 'as' => 'activeRV', 'uses' => 'getActiveRV']);
-    Route::post('/addRV/{id}', [ 'as' => 'addRV', 'uses' => 'addRV']);
-    Route::post('/rendezvous/{id}', [ 'as' => 'updateRV', 'uses' => 'updateRV']);
-    Route::get('/rendezvous/decaler/{id}', [ 'as' => 'decalerRV', 'uses' => 'decalerRV']);
-    Route::get('/rendezvous/fin/{id}', [ 'as' => 'finRV', 'uses' => 'finRV']);
-});
-
-Route::controller(TraitementController::class)->group(function(){
-
-    Route::get('/traitement/list/{id}', [ 'as' => 'listTraitement', 'uses' => 'getActive']);
-    Route::post('/addTraitement/{id}', [ 'as' => 'addTraitement', 'uses' => 'add']);
-    Route::get('/traitement/All/{id}', [ 'as' => 'allTraitement', 'uses' => 'getAll']);
-});
-
-Route::controller(DossierController::class)->group(function(){
-
-    Route::get('/dossier/actice/{id}', [ 'as' => 'getDossier', 'uses' => 'getDossier']);
-    Route::get('/dossier/all/{id}', [ 'as' => 'getAllDossier', 'uses' => 'getAllDossier']);
-    Route::get('/dossier/select/{id}', [ 'as' => 'getDossierbyId', 'uses' => 'getDossierbyId']);
-});
-
-Route::controller(PrescriptionController::class)->group(function(){
-
-    Route::get('/prescription/list/{id}', [ 'as' => 'listPrescription', 'uses' => 'getActive']);
-    Route::post('/Prescription/add/{id}', [ 'as' => 'addPrescription', 'uses' => 'add']);
-    Route::get('/ordonance/{id}', [ 'as' => 'getByOrdonance', 'uses' => 'getByOrdonance']);
-    Route::get('/prescription/delete/{id}', [ 'as' => 'deletePrescription', 'uses' => 'delete']);
-});
-
-Route::controller(PdfController::class)->group(function(){
-
-    Route::get('/ordonance/pdf/{id}', [ 'as' => 'ordonancePDF', 'uses' => 'ordonancePDF']);
-    Route::get('/facture/pdf/{id}', [ 'as' => 'facturePDF', 'uses' => 'facturePDF']);
+    Route::post('/prescription/add/{id}', [ (PrescriptionController::class), 'add'])->name('addPrescription');
+    Route::get('/prescription/delete/{id}', [ (PrescriptionController::class), 'delete'])->name('deletePrescription');
 });
 
 require __DIR__.'/auth.php';

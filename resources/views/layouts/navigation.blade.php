@@ -41,18 +41,26 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Accueil
                             </a>
+                            @if(Auth::user()->hasRole('ADMIN'))
                             <a class="nav-link" href="{{ url('/user/list') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user fa-fw"></i></div>
                                 Gestion Utilisateur
                             </a>
+                            @endif
+
+                            @if(Auth::user()->hasRole('MEDECIN'))
                             <a class="nav-link" href="{{ url('/medecin/patient') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-heartbeat fa-fw"></i></div>
                                 Gestion Patients
                             </a>
+                            @endif
+
+                            @if(Auth::user()->hasRole('SECRETAIRE'))
                             <a class="nav-link" href="{{ url('/patient/list') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-heartbeat fa-fw"></i></div>
                                 Gestion Patients
                             </a>
+                            @endif
                             
                         </div>
                     </div>

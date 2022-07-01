@@ -6,7 +6,7 @@
             <div class="container col-md-8">
                 <div class="card  mb-4">
                     <div class="card-header">
-                        <h6 class="m-0 font-weight-bold text-primary">Liste des utilisateurs</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Liste des patients</h6>
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
@@ -61,7 +61,7 @@
      <div class="container col-md-4"> 
         <div class="card"> 
             <div class="card-header">
-                <h6 class="m-0 font-weight-bold text-primary">Formulaire d'ajout des utilisateurs</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Formulaire d'ajout des patients</h6>
             </div>
 
             <form method="POST" action="{{ route('addpatient') }}">

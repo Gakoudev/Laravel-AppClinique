@@ -87,8 +87,8 @@ class PrescriptionController extends Controller
     {
         if (Session::has('user')) {
             $prescription=Prescription::find($id);
-            $ordonance = Ordonance::find($prescription->ordonance);
-            $pId = $ordonance->patient;
+            $ordonance = Ordonance::find($prescription->ordonances_id);
+            $pId = $ordonance->patients_id;
             $prescription->delete($id);
             return redirect()->route('listPrescription',['id'=>$pId]);
         }

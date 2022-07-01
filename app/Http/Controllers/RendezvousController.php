@@ -85,7 +85,7 @@ class RendezvousController extends Controller
             $rendezvous=Rendezvous::find($id);
             $rendezvous->detail =  $request->detail;
             $rendezvous->dateRv =  $request->dateRV;
-            $pId = $rendezvous->patient;
+            $pId = $rendezvous->patients_id;
             $rendezvous->save();
             return redirect()->route('activeRV',['id'=>$pId]);
         }
@@ -99,7 +99,7 @@ class RendezvousController extends Controller
     {
         if (Session::has('user')) {
             $rendezvous=Rendezvous::find($id);
-            $pId = $rendezvous->patient;
+            $pId = $rendezvous->patients_id;
             $rendezvous->etat=1-$rendezvous->etat;
             $rendezvous->save();
             return redirect()->route('activeRV',['id'=>$pId]);
