@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('ordonances', function (Blueprint $table) {
             $table->id();
             $table->integer('etat');
-            $table->unsignedBigInteger('patient');
-            $table->foreign('patient')->references('id')->on('patients')->onDelete('cascade');
+            $table->unsignedBigInteger('patients_id');
+            $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade');
             $table->unsignedBigInteger('users_id');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('factures_id');

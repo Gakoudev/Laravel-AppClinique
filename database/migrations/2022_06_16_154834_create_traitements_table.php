@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('libelle');
             $table->string('detail');
             $table->decimal('prix', 10, 2);
-            $table->dateTime('date');
+            $table->date('date');
             $table->unsignedBigInteger('patients_id');
             $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade');
             $table->unsignedBigInteger('users_id');

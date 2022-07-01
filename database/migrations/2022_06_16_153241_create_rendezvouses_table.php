@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('rendezvouses', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('dateRV');
+            $table->date('dateRV');
             $table->string('detail');
             $table->integer('etat');
             $table->unsignedBigInteger('users_id');

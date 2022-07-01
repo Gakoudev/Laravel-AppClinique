@@ -161,8 +161,8 @@
                     </td>
                 </tr>
                 
-                <tr class="item">
                 @foreach($prescriptions as $prescription)
+                <tr class="item">
                     <td>
                     {{$prescription->libelle}}
                     </td>
@@ -171,8 +171,8 @@
                     <td>
                         
                     </td>
-                @endforeach
                 </tr>
+                @endforeach
                 
                 <tr class="total">
                     <td></td>

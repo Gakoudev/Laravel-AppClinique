@@ -40,7 +40,6 @@ class PatientController extends Controller
             
             $param = Parametrage::find(1);
             $request->validate([
-                'numero' => ['required', 'string', 'max:255'],
                 'prenom' => ['required', 'string', 'max:255'],
                 'nom' => ['required', 'string', 'max:255'],
                 'telephone' => ['required', 'string', 'max:255'],
@@ -55,6 +54,7 @@ class PatientController extends Controller
                 'dateN' => $request->dateN,
                 'users_id' => Auth::user()->id,
             ]);
+            var_dump($patient);
             $param->numPat++;
             $param->save();
             return redirect()->route('listAntecedent',['id'=>$patient->id]);

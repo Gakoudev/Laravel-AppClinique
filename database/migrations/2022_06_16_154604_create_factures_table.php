@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('factures', function (Blueprint $table) {
             $table->id();
             $table->string('numero');
-            $table->dateTime('date');
+            $table->date('date');
             $table->integer('etat');
             $table->unsignedBigInteger('patients_id');
             $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade');

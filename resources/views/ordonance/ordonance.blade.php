@@ -6,7 +6,16 @@
             <div class="container col-md-7">
                 <div class="card  mb-4">
                     <div class="card-header">
-                        <h6 class="m-0 font-weight-bold text-primary">Liste des prescritions de {{$patient->prenom}} {{$patient->nom}}</h6>
+                        <div class="row">
+                            <div class="col-md-7 mt-4">
+                                <h6 class="m-0 font-weight-bold text-primary">Liste des prescritions de {{$patient->prenom}} {{$patient->nom}}</h6>
+                            </div>
+                            @if($etat==1) 
+                            <div class="flex items-center justify-end mt-3 col-md-5">
+                                <a href= "{{route('ordonancePDF',['id'=>$prescriptions[0]->ordonance])}}"><input type="submit" class="btn btn-primary" value="imprimer ordonance"/></a>
+                            </div>
+                            @endif
+                        </div>
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
@@ -93,17 +102,17 @@
 </div>
 <div class="row">
 
-<div class="container col-md-5"> 
-<div class="flex items-center justify-end mt-4">
-<a href= "{{route('activeRV',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Nouveau RV"/></a>
-</div>
-</div>
+    <div class="container col-md-5"> 
+        <div class="flex items-center justify-end mt-4">
+        <a href= "{{route('activeRV',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="Nouveau RV"/></a>
+        </div>
+    </div>
 </div>
 @else
     <div class="row">
             <div class="container col-md-2">
                 <div class="flex items-center justify-end mt-3 col-md-5">
-                        <a href= "{{route('ordonancePDF',['id'=>$prescription->ordonance])}}"><input type="submit" class="btn btn-primary" value="Générer Facture"/></a>
+                        <a href= "{{route('ordonancePDF',['id'=>$prescription->ordonance])}}"><input type="submit" class="btn btn-primary" value="imprimer ordonance"/></a>
                 </div>
             </div>
     </div>
