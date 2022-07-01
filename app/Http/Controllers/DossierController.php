@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Antecedent;
 use App\Models\Facture;
+use App\Models\Ordonance;
 use App\Models\Patient;
+use App\Models\Traitement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,15 +17,15 @@ class DossierController extends Controller
     public function getDossier($id)
     {
         if (Session::has('user')) {
-            $facture = DB::table('factures')->where('patient','=',$id)
-                                            ->where('etat','=',1)->get();
+            $facture = Facture::where('patients_id','=',$id)
+                                      ->where('etat','=',1)->get();
             if (!$facture->isEmpty()) {
                 $patient = Patient::find($id);
-                $antecedents = DB::table('antecedents')->where('patient','=',$id)->get();
-                $traitements = DB::table('traitements')->where('facture','=',$facture[0]->id)->get();
-                $ordonances = DB::table('ordonances')->where('facture','=',$facture[0]->id)->get();
+                $antecedents = Antecedent::where('patients_id','=',$id)->get();
+                $traitements = Traitement::where('factures_id','=',$facture[0]->id)->get();
+                $ordonances = Ordonance::where('factures_id','=',$facture[0]->id)->get();
                 $etat = $facture[0]->etat;
-                if(Auth::user()->role==2){
+                if(Auth::user()->role->nom=='SECRETAIRE'){
                     $etat = 2;
                 }
                 return view('dossier.dossier',['traitements'=>$traitements,'ordonances'=>$ordonances,'patient'=>$patient,'antecedents'=>$antecedents,'etat'=>$etat]);
@@ -42,7 +45,7 @@ class DossierController extends Controller
     {
         if (Session::has('user')) {
             $patient = Patient::find($id);
-            $dossiers = DB::table('factures')->where('patient','=',$id)
+            $dossiers = Facture::where('patients_id','=',$id)
                                             ->get();
             return view('dossier.alldossier',['patient'=>$patient,'dossiers'=>$dossiers]);
         }
@@ -57,12 +60,12 @@ class DossierController extends Controller
     {
         if (Session::has('user')) {
             $dossier = Facture::find($id);
-            $antecedents = DB::table('antecedents')->where('patient','=',$id)->get();
-            $patient = Patient::find($dossier->patient);
-            $traitements = DB::table('traitements')->where('facture','=',$dossier->id)->get();
-            $ordonances = DB::table('ordonances')->where('facture','=',$dossier->id)->get();
+            $antecedents = Antecedent::where('patients_id','=',$id)->get();
+            $patient = Patient::find($dossier->patients_id);
+            $traitements = Traitement::where('factures_id','=',$dossier->id)->get();
+            $ordonances = Ordonance::where('factures_id','=',$dossier->id)->get();
             $etat = $dossier->etat;
-            if(Auth::user()->role==2){
+            if(Auth::user()->role->nom=='SECRETAIRE'){
                 $etat = 2;
             }
             return view('dossier.dossier',['traitements'=>$traitements,'ordonances'=>$ordonances,'patient'=>$patient,'antecedents'=>$antecedents,'etat'=>$etat]);

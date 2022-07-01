@@ -15,9 +15,9 @@ class PrescriptionController extends Controller
     public function getByOrdonance($id)
     {
         if (Session::has('user')) {
-            $prescriptions = DB::table('prescriptions')->where('ordonance','=',$id)->get();
+            $prescriptions = Prescription::where('ordonances_id','=',$id)->get();
             $ordonance = Ordonance::find($id);
-            $patient = Patient::find($ordonance->patient);
+            $patient = Patient::find($ordonance->patients_id);
             $etat=0;
             return view('ordonance.ordonance',['prescriptions'=>$prescriptions,'patient'=>$patient,'etat'=>$etat]);
         }
@@ -32,10 +32,10 @@ class PrescriptionController extends Controller
         if (Session::has('user')) {
             
             $patient = Patient::find($id);
-            $ordonance = DB::table('ordonances')->where('patient','=',$id)
-                                            ->where('etat','=',1)->get();
+            $ordonance = Ordonance::where('patients_id','=',$id)
+                                         ->where('etat','=',1)->get();
             if (!$ordonance->isEmpty()) {
-                $prescriptions = DB::table('prescriptions')->where('ordonance','=',$ordonance[0]->id)->get();
+                $prescriptions = Prescription::where('ordonances_id','=',$ordonance[0]->id)->get();
                 $etat=1;
                 return view('ordonance.ordonance',['prescriptions'=>$prescriptions,'patient'=>$patient,'etat'=>$etat]);
             }
@@ -54,8 +54,8 @@ class PrescriptionController extends Controller
     public function add($id,Request $request)
     {
         if (Session::has('user')) {
-            $ordonances = DB::table('ordonances')->where('patient','=',$id)
-                                                ->where('etat','=',1)->get();
+            $ordonances = Ordonance::where('patients_id','=',$id)
+                                           ->where('etat','=',1)->get();
             if($ordonances->isEmpty())
             {
                 $ordonance = OrdonanceController::new($id);
@@ -73,7 +73,7 @@ class PrescriptionController extends Controller
                 'libelle' => $request->libelle,
                 'quantite' => $request->quantite,
                 'detail' => $request->detail,
-                'ordonance'=>$ordonance->id,
+                'ordonances_id'=>$ordonance->id,
             ]);
             return redirect()->route('listPrescription',['id'=>$id]);
         }

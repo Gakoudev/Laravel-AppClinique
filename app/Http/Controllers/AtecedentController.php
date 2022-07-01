@@ -14,7 +14,7 @@ class AtecedentController extends Controller
     public function getAllAntecedent($id)
     {
         if (Session::has('user')) {
-            $antecedents = DB::table('antecedents')->where('patient','=',$id)->get();
+            $antecedents = DB::table('antecedents')->where('patients_id','=',$id)->get();
             $patient = Patient::find($id);
             return view('antecedent.antecedent',['antecedents'=>$antecedents,'patient'=>$patient]);
         }
@@ -34,7 +34,7 @@ class AtecedentController extends Controller
             $antecedent = Antecedent::create([
                 'libelle' => $request->libelle,
                 'detail' => $request->detail,
-                'patient' => $id,
+                'patients_id' => $id,
             ]);
             return redirect()->route('listAntecedent',['id'=>$id]);
         }

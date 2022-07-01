@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Facture;
+use App\Models\Parametrage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,13 +14,16 @@ class FactureController extends Controller
     public static function new($id)
     {
         if (Session::has('user')) {
+            $param = Parametrage::find(1);
             $facture = Facture::create([
-                'numero' => 'F001',
+                'numero' => 'F'.(string)$param->numFac,
                 'etat' => 1,
-                'patient' => $id,
-                'user' => Auth::user()->id,
+                'patients_id' => $id,
+                'users_id' => Auth::user()->id,
                 'date' => Carbon::now(),
             ]);
+            $param->numFac++;
+            $param->save();
             return $facture;
         }
         else {

@@ -24,7 +24,7 @@ class User extends Authenticatable
         'etat',
         'email',
         'password',
-        'role',
+        'roles_id',
     ];
     
 
@@ -74,8 +74,8 @@ class User extends Authenticatable
         return $this->hasMany(Traitement::class);
     }
     
-    public function roles()
+    public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class,'roles_id');
     }
 }

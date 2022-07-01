@@ -13,23 +13,23 @@ class Traitement extends Model
         'detail',
         'prix',
         'date',
-        'patient',
-        'user',
-        'facture',
+        'patients_id',
+        'users_id',
+        'factures_id',
     ];
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patient::class,'patients_id');
     }
     
-    public function users()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'users_id');
     }
     
     public function facture()
     {
-        return $this->belongsTo(Facture::class);
+        return $this->belongsTo(Facture::class,'factures_id');
     }
 }

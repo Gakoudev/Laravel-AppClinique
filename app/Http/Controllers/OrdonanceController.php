@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Facture;
 use App\Models\Ordonance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,16 +14,16 @@ class OrdonanceController extends Controller
     public static function new($id)
     {
         if (Session::has('user')) {
-            $facture = DB::table('factures')->where('patient','=',$id)
-                                            ->where('etat','=',1)->get();
+            $facture = Facture::where('patients_id','=',$id)
+                                      ->where('etat','=',1)->get();
             if (!isset($facture)){
                 $facture = FactureController::new($id);
             }
             $ordonance = Ordonance::create([
                 'etat' => 1,
-                'patient' => $id,
-                'user' => Auth::user()->id,
-                'facture'=>$facture[0]->id,
+                'patients_id' => $id,
+                'users_id' => Auth::user()->id,
+                'factures_id'=>$facture[0]->id,
             ]);
             return $ordonance;
         }

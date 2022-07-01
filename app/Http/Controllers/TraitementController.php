@@ -14,7 +14,7 @@ class TraitementController extends Controller
     public function getAll($id)
     {
         if (Session::has('user')) {
-            $traitements = DB::table('traitements')->where('patient','=',$id)->get();
+            $traitements = Traitement::where('patients_id','=',$id)->get();
             $patient = Patient::find($id);
             return view('traitement.traitement',['traitements'=>$traitements,'patient'=>$patient]);
         }
@@ -28,10 +28,10 @@ class TraitementController extends Controller
     {
         if (Session::has('user')) {
             $patient = Patient::find($id);
-            $facture = DB::table('factures')->where('patient','=',$id)
+            $facture = DB::table('factures')->where('patients_id','=',$id)
                                             ->where('etat','=',1)->get();
             if (!$facture->isEmpty()) {
-                $traitements = DB::table('traitements')->where('facture','=',$facture[0]->id)->get();
+                $traitements = Traitement::where('factures_id','=',$facture[0]->id)->get();
                 return view('traitement.traitement',['traitements'=>$traitements,'patient'=>$patient]);
             }
             else {
@@ -48,12 +48,18 @@ class TraitementController extends Controller
     public function add($id,Request $request)
     {
         if (Session::has('user')) {
-            $facture = DB::table('factures')->where('patient','=',$id)
+            $facture = DB::table('factures')->where('patients_id','=',$id)
                                                 ->where('etat','=',1)->get();
+
             if($facture->isEmpty())
             {
                 $facture = FactureController::new($id);
+                $idfac = $facture->id;
             } 
+            else{
+                
+                $idfac = $facture[0]->id;
+            }
             $request->validate([
                 'libelle' => ['required', 'string', 'max:255'],
                 'date' => ['required', 'date'],
@@ -66,9 +72,9 @@ class TraitementController extends Controller
                 'date' => $request->date,
                 'detail' => $request->detail,
                 'prix' => $request->prix,
-                'patient' => $id,
-                'user' => Auth::user()->id,
-                'facture'=>$facture[0]->id,
+                'patients_id' => $id,
+                'users_id' => Auth::user()->id,
+                'factures_id'=>$idfac,
             ]);
             return redirect()->route('listTraitement',['id'=>$id]);
         }

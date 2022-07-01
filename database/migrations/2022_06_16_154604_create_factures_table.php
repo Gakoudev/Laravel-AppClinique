@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('numero');
             $table->dateTime('date');
             $table->integer('etat');
-            $table->unsignedBigInteger('patient');
-            $table->foreign('patient')->references('id')->on('patients')->onDelete('cascade');
-            $table->unsignedBigInteger('user');
-            $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('patients_id');
+            $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

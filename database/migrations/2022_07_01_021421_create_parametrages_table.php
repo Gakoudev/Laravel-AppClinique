@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prescriptions', function (Blueprint $table) {
+        Schema::create('parametrages', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
-            $table->string('detail');
-            $table->string('quantite');
-            $table->unsignedBigInteger('ordonances_id');
-            $table->foreign('ordonances_id')->references('id')->on('ordonances')->onDelete('cascade');
+            $table->BigInteger('numFac');
+            $table->BigInteger('numPat');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prescriptions');
+        Schema::dropIfExists('parametrages');
     }
 };

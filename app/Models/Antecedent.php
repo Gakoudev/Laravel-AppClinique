@@ -11,12 +11,12 @@ class Antecedent extends Model
     protected $fillable = [
         'libelle',
         'detail',
-        'patient',
+        'patients_id',
     ];
 
     public function patient()
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Patient::class,'patients_id');
     }
     
 }

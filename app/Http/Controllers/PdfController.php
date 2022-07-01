@@ -16,22 +16,22 @@ class PdfController extends Controller
 {
 
     public function ordonancePDF($id){
-      $prescriptions =  DB::table('prescriptions')->where('ordonance','=',$id)->get();
+      $prescriptions =  DB::table('prescriptions')->where('ordonances_id','=',$id)->get();
         $ordonance = Ordonance::find($id);
-        $doc = User::find($ordonance->user);
-        $patient = Patient::find($ordonance->patient);
+        $doc = User::find($ordonance->users_id);
+        $patient = Patient::find($ordonance->patients_id);
       $pdf = PDF::loadView('pdf.pdfordonance',['prescriptions'=> $prescriptions,'doc'=> $doc,'patient'=> $patient])->setPaper('a5');
       return $pdf->download('ordonnance.pdf');
 
     }
 
     public function facturePDF($id){
-      $traitements =  DB::table('traitements')->where('facture','=',$id)->get();
+      $traitements =  DB::table('traitements')->where('factures_id','=',$id)->get();
         $facture = Facture::find($id);
         $facture->user = Auth::user()->id;
         $facture->save();
-        $sec = User::find($facture->user);
-        $patient = Patient::find($facture->patient);
+        $sec = User::find($facture->users_id);
+        $patient = Patient::find($facture->patients_id);
         $total = 0;
       $pdf = PDF::loadView('pdf.pdffacture',['total'=> $total,'traitements'=> $traitements,'sec'=> $sec,'patient'=> $patient,'facture'=> $facture])->setPaper('a4', 'landscape');
       return $pdf->download('facture.pdf');

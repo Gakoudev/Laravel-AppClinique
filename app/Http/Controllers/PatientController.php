@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parametrage;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,8 @@ class PatientController extends Controller
     public function addPatient(Request $request)
     {
         if (Session::has('user')){
+            
+            $param = Parametrage::find(1);
             $request->validate([
                 'numero' => ['required', 'string', 'max:255'],
                 'prenom' => ['required', 'string', 'max:255'],
@@ -45,13 +48,15 @@ class PatientController extends Controller
             ]);
 
             $patient = Patient::create([
-                'numero' => $request->numero,
+                'numero' => 'P'.(string)$param->numPat,
                 'prenom' => $request->prenom,
                 'nom' => $request->nom,
                 'telephone' => $request->telephone,
                 'dateN' => $request->dateN,
-                'user' => Auth::user()->id,
+                'users_id' => Auth::user()->id,
             ]);
+            $param->numPat++;
+            $param->save();
             return redirect()->route('listAntecedent',['id'=>$patient->id]);
         }
         else {

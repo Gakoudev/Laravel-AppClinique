@@ -157,7 +157,7 @@
                                         <td>{{$traitement->libelle}}</td>
                                         <td >{{$traitement->detail}}</td>
                                         <td>{{$traitement->prix}}</td>
-                                        <td>{{$traitement->user}}</td>
+                                        <td>{{$traitement->user->prenom}} {{$traitement->user->nom}}</td>
                                 @endforeach
                             </tbody>
                         </table>
@@ -204,7 +204,7 @@
                                     <tr>
                                         <td>{{$ordonance->id}}</td>
                                         <td>{{$ordonance->created_at}}</td>
-                                        <td>{{$ordonance->user}}</td>
+                                        <td>{{$ordonance->user->prenom}} {{$ordonance->user->nom}}</td>
                                         <td><a class='btn btn-primary'  href= "{{route('getByOrdonance',['id'=>$ordonance->id])}}">
                                         <i class="fas fa-eye fa-fw"></i>
                                             </a>

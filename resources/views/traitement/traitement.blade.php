@@ -36,7 +36,7 @@
                                         <td>{{$traitement->libelle}}</td>
                                         <td >{{$traitement->detail}}</td>
                                         <td>{{$traitement->prix}}</td>
-                                        <td>{{$traitement->user}}</td>
+                                        <td>{{$traitement->user->prenom}} {{$traitement->user->nom}}</td>
                                 @endforeach
                                 @endisset
                             </tbody>

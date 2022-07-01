@@ -14,11 +14,11 @@ class Patient extends Model
         'nom',
         'telephone',
         'dateN',
-        'user',
+        'users_id',
     ];
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'users_id');
     }
 
     public function rendezvous()

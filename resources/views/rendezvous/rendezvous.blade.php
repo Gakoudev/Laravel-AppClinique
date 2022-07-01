@@ -37,7 +37,7 @@
                                         <td>{{$rv->dateRV}}</td>
                                         <td>{{$rv->detail}}</td>
                                         <td >à venir</td>
-                                        <td>{{$rv->user}}</td>
+                                        <td>{{$rv->user->prenom}} {{$rv->user->nom}}</td>
                                         <td><a class='btn btn-primary'  href= "{{route('decalerRV',['id'=>$rv->id])}}">
                                         <i class="fas fa-thumbs-up fa-fw"></i>
                                             </a>

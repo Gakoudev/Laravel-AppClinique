@@ -42,7 +42,7 @@
                                         <td>{{$patient->nom}}</td>
                                         <td>{{$patient->telephone}}</td>
                                         <td>{{$patient->dateN}}</td>
-                                        <td>{{$patient->user}}</td>
+                                        <td>{{$patient->user->prenom}} {{$patient->user->nom}}</td>
                                         <td><a class='btn btn-primary'  href= "{{route('getDossier',['id'=>$patient->id])}}">
                                         <i class="fas fa-folder-open fa-fw"></i>
                                             </a>
@@ -66,12 +66,6 @@
 
             <form method="POST" action="{{ route('addpatient') }}">
                 @csrf
-                <!-- Numéro -->
-                
-                <div class="form-floating mb-3">   
-                <input class="form-control" id="numero" type="text" name="numero" placeholder="numero" required autofocus/>
-                
-                <label for="numero">Numéro</label>   
 
                 <!-- Prenom -->
                 

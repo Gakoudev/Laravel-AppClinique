@@ -14,7 +14,7 @@ class RendezvousController extends Controller
     public function getAllRendezvous($id)
     {
         if (Session::has('user')) {
-            $rendezvous = DB::table('rendezvouses')->where('patient','=',$id)->get();
+            $rendezvous = DB::table('rendezvouses')->where('patients_id','=',$id)->get();
             $patient = Patient::find($id);
             return view('rendezvous.rendezvous',['rendezvous'=>$rendezvous,'patient'=>$patient]);
         }
@@ -27,7 +27,7 @@ class RendezvousController extends Controller
     public function getActiveRV($id)
     {
         if (Session::has('user')) {
-            $rendezvous = DB::table('rendezvouses')->where('patient','=',$id)
+            $rendezvous = Rendezvous::where('patients_id','=',$id)
                                                 ->where('etat','=',1)->get();
             $patient = Patient::find($id);
             return view('rendezvous.rendezvous',['rendezvous'=>$rendezvous,'patient'=>$patient,'update'=>0]);
@@ -49,8 +49,8 @@ class RendezvousController extends Controller
                 'dateRV' => $request->dateRV,
                 'detail' => $request->detail,
                 'etat' => 1,
-                'patient' => $id,
-                'user' => Auth::user()->id,
+                'patients_id' => $id,
+                'users_id' => Auth::user()->id,
             ]);
             return redirect()->route('activeRV',['id'=>$id]);
         }
@@ -64,7 +64,7 @@ class RendezvousController extends Controller
     {
         if (Session::has('user')) {
             $rendezvous=Rendezvous::find($id);
-            $patient = Patient::find($rendezvous->patient);
+            $patient = Patient::find($rendezvous->patients_id);
             return view('rendezvous.rendezvous',['rendezvous'=>$rendezvous,'patient'=>$patient,'update'=>1]);
         }
         else {
