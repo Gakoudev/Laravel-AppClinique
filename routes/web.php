@@ -9,7 +9,9 @@ use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\RendezvousController;
 use App\Http\Controllers\TraitementController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +28,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
+Route::get('/dashboard', function (Request $request) {
+    if ((Auth::user()->updated_at == Auth::user()->created_at)) {
+        return view('auth.reset-password', ['request' => $request]);
+     }
+     else
+     {
+        return view('dashboard');
+     }
+    
 })->middleware(['auth'])->name('dashboard');
+
+Route::post('/resetPassword', [ UserController::class, 'resetPassword'])->name('resetPassword');
  
 Route::middleware(['admin'])->group(function () {
     Route::get('/user/list', [ UserController::class, 'getAll'])->name('listUser');

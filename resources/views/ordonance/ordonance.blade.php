@@ -11,9 +11,11 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Liste des prescritions de {{$patient->prenom}} {{$patient->nom}}</h6>
                             </div>
                             @if($etat==1) 
+                            @isset($prescriptions)
                             <div class="flex items-center justify-end mt-3 col-md-5">
                                 <a href= "{{route('ordonancePDF',['id'=>$prescriptions[0]->ordonance])}}"><input type="submit" class="btn btn-primary" value="imprimer ordonance"/></a>
                             </div>
+                            @endisset
                             @endif
                         </div>
                     </div>

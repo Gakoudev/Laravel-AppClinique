@@ -54,7 +54,6 @@ class PatientController extends Controller
                 'dateN' => $request->dateN,
                 'users_id' => Auth::user()->id,
             ]);
-            var_dump($patient);
             $param->numPat++;
             $param->save();
             return redirect()->route('listAntecedent',['id'=>$patient->id]);

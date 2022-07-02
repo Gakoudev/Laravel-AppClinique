@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
@@ -64,6 +65,18 @@ class UserController extends Controller
             Auth::guard('web')->logout();
             return redirect('/');
         }
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        $user = User::find(Auth::user()->id);
+        $user->password = Hash::make($request->password); 
+        
+        $user->save();
+        return view('dashboard');
     }
 
 }
