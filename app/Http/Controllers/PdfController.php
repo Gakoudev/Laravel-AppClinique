@@ -30,7 +30,7 @@ class PdfController extends Controller
     public function facturePDF($id){
       $traitements =  DB::table('traitements')->where('factures_id','=',$id)->get();
         $facture = Facture::find($id);
-        $facture->user = Auth::user()->id;
+        $facture->users_id = Auth::user()->id;
         $sec = User::find($facture->users_id);
         $patient = Patient::find($facture->patients_id);
         $total = 0;

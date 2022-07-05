@@ -6,7 +6,14 @@
             <div class="container col-md-7">
                 <div class="card  mb-4">
                     <div class="card-header">
-                        <h6 class="m-0 font-weight-bold text-primary">Liste des traitements de {{$patient->prenom}} {{$patient->nom}}</h6>
+                        <div class="row">
+                            <div class="col-md-7 mt-4">
+                            <h6 class="m-0 font-weight-bold text-primary">Liste des traitements de {{$patient->prenom}} {{$patient->nom}}</h6>
+                            </div>
+                            <div class="flex items-center justify-end mt-3 col-md-5">
+                                <a href= "{{route('allTraitement',['id'=>$patient->id])}}"><input type="submit" class="btn btn-primary" value="tout les Traitements"/></a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">

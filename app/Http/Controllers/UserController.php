@@ -76,7 +76,7 @@ class UserController extends Controller
         $user->password = Hash::make($request->password); 
         
         $user->save();
-        return view('dashboard');
+        return redirect('/dashboard');
     }
 
 }

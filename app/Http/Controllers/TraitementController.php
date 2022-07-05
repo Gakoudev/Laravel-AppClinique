@@ -16,7 +16,7 @@ class TraitementController extends Controller
         if (Session::has('user')) {
             $traitements = Traitement::where('patients_id','=',$id)->get();
             $patient = Patient::find($id);
-            return view('traitement.traitement',['traitements'=>$traitements,'patient'=>$patient]);
+            return view('traitement.AllTraitement',['traitements'=>$traitements,'patient'=>$patient]);
         }
         else {
             Auth::guard('web')->logout();
